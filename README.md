@@ -1,2 +1,2 @@
 # BlueOceanPipeline
-Repository without Jenkinsfile
+Repository without Jenkinsfile.
