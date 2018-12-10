@@ -33,7 +33,7 @@
 <xsl:template match="testResults">
 	<html>
 		<head>
-			<title>Functional Test Results</title>
+			<title>API Test Results</title>
 			<style type="text/css">
 				body {
 					font:normal 80% verdana,arial,helvetica;
@@ -72,10 +72,9 @@
 			<xsl:call-template name="pageHeader" />
 			
 			<xsl:call-template name="summary" />
-			<hr size="1" width="95%" align="center" />
-			
+			<hr size="1"/> 			
 			<xsl:call-template name="pagelist" />
-			<hr size="1" width="95%" align="center" />
+			<hr size="1" /> 
 			
 			<xsl:call-template name="detail" />
 
@@ -84,13 +83,13 @@
 </xsl:template>
 
 <xsl:template name="pageHeader">
-	<h1>Functional Test Results</h1>
+	<h1>API Test Results</h1>
 	<hr size="1" />
 </xsl:template>
 
 <xsl:template name="summary">
-	<h2>Summary</h2>
-	<table align="center" class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
+	<h3>Summary</h3>
+	<table class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
 		<tr valign="top">
 			<th># Samples</th>
 			<th>Success Rate</th>
@@ -107,7 +106,8 @@
 			<xsl:variable name="allTotalTime" select="sum(/testResults/*/@t)" />
 			<xsl:variable name="allAverageTime" select="$allTotalTime div $allCount" />
 			<xsl:variable name="allThroughput" select="1000 * $allCount div ($finalTime - $startTime)" />
-			<xsl:variable name="allMinTime">
+			
+			<!--<xsl:variable name="allMinTime">
 				<xsl:call-template name="min">
 					<xsl:with-param name="nodes" select="/testResults/*/@t" />
 				</xsl:call-template>
@@ -117,6 +117,7 @@
 					<xsl:with-param name="nodes" select="/testResults/*/@t" />
 				</xsl:call-template>
 			</xsl:variable>
+			-->
 			<xsl:attribute name="class">
 				<xsl:choose>
 					<xsl:when test="$allFailureCount &gt; 0">Failure</xsl:when>
@@ -144,16 +145,16 @@
 	</table>
 </xsl:template>
 <xsl:template name="pagelist">
-	<h2>Results per transaction</h2>
-	<table align="center" class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
+	<h3>Results per transaction</h3>
+	<table class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
 		<tr valign="top">
 			<th>Transaction Controller</th>
 			<th># Samples</th>
 			<th>Failures</th>
 			<th>Success Rate</th>
 			<th>Average Time</th>
-			<th>Min Time</th>
-			<th>Max Time</th>
+			<!--<th>Min Time</th>
+			<th>Max Time</th>-->
 		</tr>
 		<xsl:for-each select="/testResults/*[not(@lb = preceding::*/@lb)]">
 			<xsl:variable name="label" select="@lb" />
@@ -163,7 +164,7 @@
 			<xsl:variable name="successPercent" select="$successCount div $count" />
 			<xsl:variable name="totalTime" select="sum(../*[@lb = current()/@lb]/@t)" />
 			<xsl:variable name="averageTime" select="$totalTime div $count" />
-			<xsl:variable name="minTime">
+			<!--<xsl:variable name="minTime">
 				<xsl:call-template name="min">
 					<xsl:with-param name="nodes" select="../*[@lb = current()/@lb]/@t" />
 				</xsl:call-template>
@@ -173,6 +174,7 @@
 					<xsl:with-param name="nodes" select="../*[@lb = current()/@lb]/@t" />
 				</xsl:call-template>
 			</xsl:variable>
+			-->
 			<tr valign="top">
 				<xsl:attribute name="class">
 					<xsl:choose>
@@ -182,10 +184,10 @@
 				<td>
 					<xsl:value-of select="$label" />
 				</td>
-				<td align="center">
+				<td align="center" > 
 					<xsl:value-of select="$count" />
 				</td>
-				<td align="center">
+				<td align="center"> 
 					<xsl:value-of select="$failureCount" />
 				</td>
 				<td align="right">
@@ -198,7 +200,7 @@
 						<xsl:with-param name="value" select="$averageTime" />
 					</xsl:call-template>
 				</td>
-				<td align="right">
+				<!--<td align="right">
 					<xsl:call-template name="display-time">
 						<xsl:with-param name="value" select="$minTime" />
 					</xsl:call-template>
@@ -208,6 +210,7 @@
 						<xsl:with-param name="value" select="$maxTime" />
 					</xsl:call-template>
 				</td>
+				-->
 			</tr>
 		</xsl:for-each>
 	</table>
@@ -217,7 +220,7 @@
 	<xsl:variable name="allFailureCount" select="count(/testResults/*[attribute::s='false'])" />
 
 	<xsl:if test="$allFailureCount > 0">
-		<h2>Failure Detail</h2>
+		<h3>Failure Detail</h3>
 
 		<xsl:for-each select="/testResults/*[not(@lb = preceding::*/@lb)]">
 
@@ -226,7 +229,7 @@
 			<xsl:if test="$failureCount > 0">
 				<h3><xsl:value-of select="@lb" /></h3>
 
-				<table align="center" class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
+				<table class="details" border="0" cellpadding="5" cellspacing="2" width="95%">
 				<tr valign="top">
 					<th>Response</th>
 					<th>Failure Message</th>
@@ -246,7 +249,8 @@
 	</xsl:if>
 </xsl:template>
 
-<xsl:template name="min">
+
+<!--<xsl:template name="min">
 	<xsl:param name="nodes" select="/.." />
 	<xsl:choose>
 		<xsl:when test="not($nodes)">NaN</xsl:when>
@@ -275,6 +279,7 @@
 		</xsl:otherwise>
 	</xsl:choose>
 </xsl:template>
+-->
 
 <xsl:template name="display-percent">
 	<xsl:param name="value" />

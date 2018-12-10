@@ -1,17 +1,33 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<testng-results skipped="0" failed="0" ignored="0" total="1" passed="1">
+<testng-results skipped="0" failed="0" ignored="0" total="3" passed="3">
   <reporter-output>
   </reporter-output>
-  <suite name="Default suite" duration-ms="7331" started-at="2018-10-29T14:31:05Z" finished-at="2018-10-29T14:31:12Z">
+  <suite name="Selenium Suite" duration-ms="57395" started-at="2018-12-04T15:28:31Z" finished-at="2018-12-04T15:29:29Z">
     <groups>
     </groups>
-    <test name="Default test" duration-ms="7331" started-at="2018-10-29T14:31:05Z" finished-at="2018-10-29T14:31:12Z">
-      <class name="com.G.P.Google.Pipeline.GoogleTest">
-        <test-method status="PASS" signature="google()[pri:0, instance:com.G.P.Google.Pipeline.GoogleTest@61832929]" name="google" duration-ms="7309" started-at="2018-10-29T15:31:05Z" finished-at="2018-10-29T15:31:12Z">
+    <test name="GoogleTest" duration-ms="10993" started-at="2018-12-04T15:28:31Z" finished-at="2018-12-04T15:28:42Z">
+      <class name="com.Google.Pipeline.GoogleTest">
+        <test-method status="PASS" signature="google()[pri:0, instance:com.Google.Pipeline.GoogleTest@cb644e]" name="google" duration-ms="10959" started-at="2018-12-04T16:28:31Z" finished-at="2018-12-04T16:28:42Z">
           <reporter-output>
           </reporter-output>
         </test-method> <!-- google -->
-      </class> <!-- com.G.P.Google.Pipeline.GoogleTest -->
-    </test> <!-- Default test -->
-  </suite> <!-- Default suite -->
+      </class> <!-- com.Google.Pipeline.GoogleTest -->
+    </test> <!-- GoogleTest -->
+    <test name="AddItemToCartTest" duration-ms="18248" started-at="2018-12-04T15:28:42Z" finished-at="2018-12-04T15:29:00Z">
+      <class name="com.Google.Pipeline.AddItemToCartTest">
+        <test-method status="PASS" signature="google()[pri:0, instance:com.Google.Pipeline.AddItemToCartTest@71318ec4]" name="google" duration-ms="18245" started-at="2018-12-04T16:28:42Z" finished-at="2018-12-04T16:29:00Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- google -->
+      </class> <!-- com.Google.Pipeline.AddItemToCartTest -->
+    </test> <!-- AddItemToCartTest -->
+    <test name="ProceedToCheckoutTest" duration-ms="28064" started-at="2018-12-04T15:29:00Z" finished-at="2018-12-04T15:29:29Z">
+      <class name="com.Google.Pipeline.ProceedToCheckoutTest">
+        <test-method status="PASS" signature="google()[pri:0, instance:com.Google.Pipeline.ProceedToCheckoutTest@78c03f1f]" name="google" duration-ms="28062" started-at="2018-12-04T16:29:00Z" finished-at="2018-12-04T16:29:29Z">
+          <reporter-output>
+          </reporter-output>
+        </test-method> <!-- google -->
+      </class> <!-- com.Google.Pipeline.ProceedToCheckoutTest -->
+    </test> <!-- ProceedToCheckoutTest -->
+  </suite> <!-- Selenium Suite -->
 </testng-results>
